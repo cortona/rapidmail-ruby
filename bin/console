@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+Bundler.require(:development)
+require_relative "../lib/rapidmail"
+
+# Try to load configuration if it exists
+config_path = File.expand_path("../config/credentials.yml", __dir__)
+if File.exist?(config_path)
+  Rapidmail::Utils::ConfigLoader.load(config_path)
+else
+  puts "Note: No configuration file found at #{config_path}"
+end
+
+require "irb"
+IRB.start(__FILE__)
