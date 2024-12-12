@@ -22,18 +22,28 @@ module Rapidmail
       @recipients ||= Resources::Recipient.new(self)
     end
 
+    # Initializes a new client instance.
+    #
+    # @param username [String] The API username.
+    # @param password [String] The API password.
     def initialize(username: Rapidmail.configuration.username, password: Rapidmail.configuration.password)
       @connection = build_connection(username, password)
     end
 
+    # Sends a GET request.
+    #
+    # @param path [String] The API endpoint path.
+    # @param params [Hash] The query parameters.
+    # @return [Faraday::Response] The response from the API.
     def get(path, params = {})
-      # @connection.get(path, params)
-      @connection.get do |req|
-        req.url path
-        req.headers["Content-Type"] = "application/json"
-      end
+      @connection.get(path, params)
     end
 
+    # Sends a POST request.
+    #
+    # @param path [String] The API endpoint path.
+    # @param params [Hash] The request body parameters.
+    # @return [Faraday::Response] The response from the API.
     def post(path, params = {})
       @connection.post do |req|
         req.url path
@@ -42,6 +52,11 @@ module Rapidmail
       end
     end
 
+    # Sends a PATCH request.
+    #
+    # @param path [String] The API endpoint path.
+    # @param params [Hash] The request body parameters.
+    # @return [Faraday::Response] The response from the API.
     def patch(path, params = {})
       @connection.patch do |req|
         req.url path
@@ -50,6 +65,11 @@ module Rapidmail
       end
     end
 
+    # Sends a PUT request.
+    #
+    # @param path [String] The API endpoint path.
+    # @param params [Hash] The request body parameters.
+    # @return [Faraday::Response] The response from the API.
     def put(path, params = {})
       @connection.put do |req|
         req.url path
@@ -58,12 +78,21 @@ module Rapidmail
       end
     end
 
+    # Sends a DELETE request.
+    #
+    # @param path [String] The API endpoint path.
+    # @return [Faraday::Response] The response from the API.
     def delete(path)
       @connection.delete(path)
     end
 
     private
 
+    # Builds the Faraday connection.
+    #
+    # @param username [String] The API username.
+    # @param password [String] The API password.
+    # @return [Faraday::Connection] The Faraday connection.
     def build_connection(username, password)
       options = {
         request: {

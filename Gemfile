@@ -14,4 +14,5 @@ group :development do
   gem "debug", "~> 1.0"
   gem "ruby-lsp", require: false
   gem "standard", "~> 1.3"
+  gem "yard", "~> 0.9.37"
 end
