@@ -4,9 +4,12 @@ A Ruby wrapper for the Rapidmail API V3. This gem provides an easy-to-use interf
 
 ## 📋 Table of Contents
 - [🚀 Installation](#-installation)
-- [⚡ Rails Integration (optional)](#-rails-integration-optional)
 - [⚙️ Configuration](#️-configuration)
 - [🔨 Usage](#-usage)
+  - [Basic Usage (Example)](#basic-usage-example)
+  - [Working with ZIP Files](#working-with-zip-files)
+- [⚡ Rails Integration (optional)](#-rails-integration-optional)
+- [📚 Documentation](#-documentation)
 - [💻 Development](#-development)
 
 
@@ -29,16 +32,6 @@ Or install it yourself as:
 $ gem install rapidmail
 ```
 
-## ⚡ Rails Integration (optional)
-
-To set up Rapidmail in a Rails application:
-
-```bash
-rails generate rapidmail:install
-```
-
-This will create an initializer at `config/initializers/rapidmail.rb`
-
 ## ⚙️ Configuration
 Configure Rapidmail with your credentials:
 
@@ -55,32 +48,50 @@ Rapidmail::Utils::ConfigLoader.load('path/to/your/config.yml')
 ```
 
 ## 🔨 Usage
-Initialize a client:
+
+### Basic Usage (Example)
 
 ```ruby
+# Initialize client
 client = Rapidmail.client
 
-# Or with explicit credentials
-client = Rapidmail.client(
-  username: 'your_username',
-  password: 'your_password'
-)
+# List mailings
+client.mailings.list
+
+# Find specific mailing
+client.mailings.find(123)
+
+# Create mailing
+client.mailings.create(params)
+
+# Delete mailing
+client.mailings.delete(123)
 ```
-Make API requests:
+
+### Working with ZIP Files
 
 ```ruby
-# GET request
-response = client.get('/recipientlists', { page: 1 })
+# Encode files for upload
+files = {
+  "newsletter.txt" => "Hello, World!",
+  "newsletter.html" => "<p>Hello, World!</p>"
+}
 
-# POST request
-response = client.post('/recipientlists', {
-  name: "Test name",
-  description: "Test description",
-  unsubscribe_blacklist: "no",
-  recipient_subscribe_email: "no",
-  default: "no"
-})
+encoded_data = Rapidmail::Utils::ZipEncoder.encode(files)
 ```
+
+## ⚡ Rails Integration (optional)
+
+To set up Rapidmail in a Rails application:
+
+```bash
+rails generate rapidmail:install
+```
+
+This will create an initializer at `config/initializers/rapidmail.rb`
+
+## 📚 Documentation
+Full documentation is available at https://cortona.github.io/rapidmail-ruby/
 
 ## 💻 Development
 After checking out the repo:
