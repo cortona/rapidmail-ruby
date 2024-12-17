@@ -10,8 +10,9 @@ require "rapidmail/resources/mailing"
 require "rapidmail/resources/recipient_list"
 require "rapidmail/resources/recipient"
 
-require "rapidmail/utils/zip_encoder"
 require "rapidmail/utils/config_loader"
+require "rapidmail/utils/placeholder"
+require "rapidmail/utils/zip_encoder"
 
 module Rapidmail
   class Error < StandardError; end
