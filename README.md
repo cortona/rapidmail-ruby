@@ -65,7 +65,7 @@ client.mailings.find(123)
 client.mailings.create(params)
 
 # Delete mailing
-client.mailings.delete(123)
+client.mailings.destroy(123)
 ```
 
 ### Working with ZIP Files
