@@ -8,6 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Martin Schneider"]
   spec.email = ["m.schneider@cortona.de"]
 
+  spec.license = "MIT"
+
   spec.summary = "A Ruby wrapper for the Rapidmail API"
   spec.description = "Rapidmail is a Ruby gem that provides an easy-to-use interface for interacting with the Rapidmail newsletter service API."
   spec.homepage = "https://cortona.de"

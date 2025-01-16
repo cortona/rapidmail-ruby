@@ -11,6 +11,7 @@ A Ruby wrapper for the Rapidmail API V3. This gem provides an easy-to-use interf
 - [⚡ Rails Integration (optional)](#-rails-integration-optional)
 - [📚 Documentation](#-documentation)
 - [💻 Development](#-development)
+- [📝 License](#-license)
 
 
 ## 🚀 Installation
@@ -99,3 +100,6 @@ After checking out the repo:
 1. Run `bin/setup` to install dependencies
 2. Create `config/credentials.yml` with your API credentials
 3. Run `bin/console` for an interactive prompt
+
+## 📝 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
