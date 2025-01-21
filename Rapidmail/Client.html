@@ -280,6 +280,28 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#ping-instance_method" title="#ping (instance method)">#<strong>ping</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#post-instance_method" title="#post (instance method)">#<strong>post</strong>(path, params = {})  &#x21d2; Faraday::Response </a>
     
 
@@ -441,12 +463,12 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>username:</span> <span class='const'><span class='object_link'><a href="../Rapidmail.html" title="Rapidmail (module)">Rapidmail</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configuration'><span class='object_link'><a href="../Rapidmail.html#configuration-class_method" title="Rapidmail.configuration (method)">configuration</a></span></span><span class='period'>.</span><span class='id identifier rubyid_username'><span class='object_link'><a href="Configuration.html#username-instance_method" title="Rapidmail::Configuration#username (method)">username</a></span></span><span class='comma'>,</span> <span class='label'>password:</span> <span class='const'><span class='object_link'><a href="../Rapidmail.html" title="Rapidmail (module)">Rapidmail</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configuration'><span class='object_link'><a href="../Rapidmail.html#configuration-class_method" title="Rapidmail.configuration (method)">configuration</a></span></span><span class='period'>.</span><span class='id identifier rubyid_password'><span class='object_link'><a href="Configuration.html#password-instance_method" title="Rapidmail::Configuration#password (method)">password</a></span></span><span class='rparen'>)</span>
   <span class='ivar'>@connection</span> <span class='op'>=</span> <span class='id identifier rubyid_build_connection'>build_connection</span><span class='lparen'>(</span><span class='id identifier rubyid_username'>username</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
@@ -527,15 +549,21 @@
       <pre class="lines">
 
 
-85
-86
-87</pre>
+104
+105
+106
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
   <span class='ivar'>@connection</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='const'>Faraday</span><span class='op'>::</span><span class='const'>ConnectionFailed</span>
+  <span class='const'><span class='object_link'><a href="../Rapidmail.html" title="Rapidmail (module)">Rapidmail</a></span></span><span class='period'>.</span><span class='id identifier rubyid_online'>online</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_raise'>raise</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -624,15 +652,21 @@
       <pre class="lines">
 
 
-38
-39
-40</pre>
+45
+46
+47
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@connection</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='const'>Faraday</span><span class='op'>::</span><span class='const'>ConnectionFailed</span>
+  <span class='const'><span class='object_link'><a href="../Rapidmail.html" title="Rapidmail (module)">Rapidmail</a></span></span><span class='period'>.</span><span class='id identifier rubyid_online'>online</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_raise'>raise</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -654,12 +688,12 @@
       <pre class="lines">
 
 
-9
-10
-11</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_jobs'>jobs</span>
   <span class='ivar'>@jobs</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="Resources.html" title="Rapidmail::Resources (module)">Resources</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Resources/Job.html" title="Rapidmail::Resources::Job (class)">Job</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Resources/Base.html#initialize-instance_method" title="Rapidmail::Resources::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -684,12 +718,12 @@
       <pre class="lines">
 
 
-13
-14
-15</pre>
+20
+21
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mailings'>mailings</span>
   <span class='ivar'>@mailings</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="Resources.html" title="Rapidmail::Resources (module)">Resources</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Resources/Mailing.html" title="Rapidmail::Resources::Mailing (class)">Mailing</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Resources/Base.html#initialize-instance_method" title="Rapidmail::Resources::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -781,16 +815,19 @@
       <pre class="lines">
 
 
-60
-61
-62
-63
-64
-65
-66</pre>
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_patch'>patch</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@connection</span><span class='period'>.</span><span class='id identifier rubyid_patch'>patch</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_req'>req</span><span class='op'>|</span>
@@ -798,6 +835,45 @@
     <span class='id identifier rubyid_req'>req</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>application/json</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_req'>req</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span>
   <span class='kw'>end</span>
+<span class='kw'>rescue</span> <span class='const'>Faraday</span><span class='op'>::</span><span class='const'>ConnectionFailed</span>
+  <span class='const'><span class='object_link'><a href="../Rapidmail.html" title="Rapidmail (module)">Rapidmail</a></span></span><span class='period'>.</span><span class='id identifier rubyid_online'>online</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_raise'>raise</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ping-instance_method">
+  
+    #<strong>ping</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11
+12
+13
+14</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 9</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ping'>ping</span>
+  <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mailings</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>true</span>
+<span class='kw'>rescue</span> <span class='const'>Faraday</span><span class='op'>::</span><span class='const'>ConnectionFailed</span>
+  <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -886,16 +962,19 @@
       <pre class="lines">
 
 
-47
-48
-49
-50
-51
-52
-53</pre>
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@connection</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_req'>req</span><span class='op'>|</span>
@@ -903,6 +982,9 @@
     <span class='id identifier rubyid_req'>req</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>application/json</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_req'>req</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span>
   <span class='kw'>end</span>
+<span class='kw'>rescue</span> <span class='const'>Faraday</span><span class='op'>::</span><span class='const'>ConnectionFailed</span>
+  <span class='const'><span class='object_link'><a href="../Rapidmail.html" title="Rapidmail (module)">Rapidmail</a></span></span><span class='period'>.</span><span class='id identifier rubyid_online'>online</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_raise'>raise</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -991,16 +1073,19 @@
       <pre class="lines">
 
 
-73
-74
-75
-76
-77
-78
-79</pre>
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@connection</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_req'>req</span><span class='op'>|</span>
@@ -1008,6 +1093,9 @@
     <span class='id identifier rubyid_req'>req</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>application/json</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_req'>req</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span>
   <span class='kw'>end</span>
+<span class='kw'>rescue</span> <span class='const'>Faraday</span><span class='op'>::</span><span class='const'>ConnectionFailed</span>
+  <span class='const'><span class='object_link'><a href="../Rapidmail.html" title="Rapidmail (module)">Rapidmail</a></span></span><span class='period'>.</span><span class='id identifier rubyid_online'>online</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_raise'>raise</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1029,12 +1117,12 @@
       <pre class="lines">
 
 
-17
-18
-19</pre>
+24
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recipient_lists'>recipient_lists</span>
   <span class='ivar'>@recipient_lists</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="Resources.html" title="Rapidmail::Resources (module)">Resources</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Resources/RecipientList.html" title="Rapidmail::Resources::RecipientList (class)">RecipientList</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Resources/Base.html#initialize-instance_method" title="Rapidmail::Resources::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -1059,12 +1147,12 @@
       <pre class="lines">
 
 
-21
-22
-23</pre>
+28
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/rapidmail/client.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recipients'>recipients</span>
   <span class='ivar'>@recipients</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="Resources.html" title="Rapidmail::Resources (module)">Resources</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Resources/Recipient.html" title="Rapidmail::Resources::Recipient (class)">Recipient</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Resources/Base.html#initialize-instance_method" title="Rapidmail::Resources::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -1079,7 +1167,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Jan 16 09:34:43 2025 by
+  Generated on Tue Jan 21 15:26:27 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.6).
 </div>
