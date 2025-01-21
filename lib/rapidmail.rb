@@ -47,5 +47,22 @@ module Rapidmail
     def configure
       yield(configuration)
     end
+
+    # Returns or sets the connection status to the Rapidmail service.
+    # Defaults to online == true.
+    # If status is false, attempts to reconnect via ping.
+    #
+    # @return [Boolean] Current connection status
+    def online?
+      @online = true if @online.nil?
+      @online = client.ping if @online == false
+      @online
+    end
+
+    # Updates the connection status to the Rapidmail service.
+    # Set to false when connection fails, true when connection succeeds.
+    #
+    # @param status [Boolean] new connection status
+    attr_writer :online
   end
 end

@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.2.0] - 2025-01-16
+
+- Implement online status handling
+
 ## [0.1.3] - 2025-01-16
 
 - Licensed under MIT license

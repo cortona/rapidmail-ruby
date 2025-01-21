@@ -6,6 +6,13 @@ module Rapidmail
     API_BASE = "https://apiv3.emailsys.net".freeze
     TIMEOUT = 5
 
+    def ping
+      get("mailings")
+      true
+    rescue Faraday::ConnectionFailed
+      false
+    end
+
     def jobs
       @jobs ||= Resources::Job.new(self)
     end
@@ -37,6 +44,9 @@ module Rapidmail
     # @return [Faraday::Response] The response from the API.
     def get(path, params = {})
       @connection.get(path, params)
+    rescue Faraday::ConnectionFailed
+      Rapidmail.online = false
+      raise
     end
 
     # Sends a POST request.
@@ -50,6 +60,9 @@ module Rapidmail
         req.headers["Content-Type"] = "application/json"
         req.body = params.to_json
       end
+    rescue Faraday::ConnectionFailed
+      Rapidmail.online = false
+      raise
     end
 
     # Sends a PATCH request.
@@ -63,6 +76,9 @@ module Rapidmail
         req.headers["Content-Type"] = "application/json"
         req.body = params.to_json
       end
+    rescue Faraday::ConnectionFailed
+      Rapidmail.online = false
+      raise
     end
 
     # Sends a PUT request.
@@ -76,6 +92,9 @@ module Rapidmail
         req.headers["Content-Type"] = "application/json"
         req.body = params.to_json
       end
+    rescue Faraday::ConnectionFailed
+      Rapidmail.online = false
+      raise
     end
 
     # Sends a DELETE request.
@@ -84,6 +103,9 @@ module Rapidmail
     # @return [Faraday::Response] The response from the API.
     def delete(path)
       @connection.delete(path)
+    rescue Faraday::ConnectionFailed
+      Rapidmail.online = false
+      raise
     end
 
     private
