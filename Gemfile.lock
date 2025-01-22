@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rapidmail (0.2.0)
+    rapidmail (0.2.1)
       faraday (~> 2.0)
       json (~> 2.0)
       rubyzip (~> 2.0)

@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.2.1] - 2025-01-22
+
+- Bugfix: Update import method to accept parameters for recipient import
+
 ## [0.2.0] - 2025-01-16
 
 - Implement online status handling
