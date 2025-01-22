@@ -37,9 +37,10 @@ module Rapidmail
 
       # Imports recipients.
       #
+      # @param params [Hash] The parameters for importing recipients.
       # @return [Faraday::Response] The response from the API.
-      def import
-        post("#{resource_path}/import")
+      def import(params = {})
+        post("#{resource_path}/import", params)
       end
     end
   end
