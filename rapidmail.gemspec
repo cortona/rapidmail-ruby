@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "base64", "~> 0.3.0" # Base64 encoding and decoding
   spec.add_dependency "faraday", "~> 2.0" # HTTP client for API requests
   spec.add_dependency "json", "~> 2.0" # JSON parsing and generation
   spec.add_dependency "rubyzip", "~> 2.0" # ZIP file creation
